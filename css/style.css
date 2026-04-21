@@ -1,0 +1,78 @@
+/*Reset basic margin*/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1e272e;
+    color:#d2dae2;
+    text-align: center;
+}
+
+/*---Top Dashboard Header ---*/
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2f3640;
+    padding: 15px 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    margin-bottom:20px;
+}
+
+.brand-logo{
+    height: 50px;
+    margin-right: 20px;
+    border-radius: 4px;
+}
+.dashboard-title {
+    font-size: 24px;
+    font-weight: 600px;
+    color: #f5f6fa;
+}
+
+.controls{
+    margin-bottom:20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4 px;
+    background-color: #0fb9b1;
+    color:white;
+    font-weight: bold;
+    transition:background-color 0.2s ease;
+}
+
+button:hover{
+    background-color: #2bcbba;
+}
+
+#canvas-container {
+    background-color: #f5f6fa;
+    margin:0 auto;
+    border-radius: 8 px;
+    width: 800px;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 15px rgbd(0,0,0,0.2);
+}
+
+.node {
+    stroke:#ffffff;
+    stroke-width: 1.5px;
+}
+
+.zone-label{
+    font-size:20px;
+    font-weight:bold;
+    fill:#485460;
+    font-family: sans-serif;
+}

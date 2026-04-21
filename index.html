@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GNN Risk Clustering - Dashboard</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header class="dashboard-header">
+        <img src="logo.png" alt="Company Logo" class="brand-logo" onerror="this.style.display='none'">
+        <h1 class="dashboard-title">AML Transaction Clustering</h1>
+    </header>
+    
+    <div class="controls">
+        <button onclick="groupByRisk()">Group by Risk Level</button>
+        <button onclick="mixAll()">Mix All Transactions</button>
+    </div>
+    
+    <div id="canvas-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
