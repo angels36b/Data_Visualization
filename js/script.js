@@ -30,6 +30,7 @@ let simulation, nodes;
 //ДЛЯ КАЖДОЙ ТРАНЗАКЦИИ, РАЗМЕРОМ В ЗАВИСИМОСТИ ОТ СУММЫ И ЦВЕТОМ В ЗАВИСИМОСТИ ОТ УРОВНЯ РИСКА
 
 d3.json("Data/data.json").then(function(data) {
+   
     nodes = svg.selectAll("circle")  //select circle 
         .data(data)                  //link the data
         .enter()                    
@@ -37,7 +38,22 @@ d3.json("Data/data.json").then(function(data) {
         .attr("class", "node")     //class to style
         .attr("r", d=> Math.max(8, d.amount /5000)) //radio:mayo
         .attr("fill", d => getNodeColor(d.risk)); //color segun el nivel de riesgo
-//create phisic engine 
+    
+    const nodeLabels = svg.selectAll(".id-label")
+        .data(data)
+        .enter()   //обнаруживает, что данные не имеют связанного элемента/ detect that data does not have an associated element
+        .append("text")     //creates a new element for each data
+        .attr("class", "id-label")
+        .text(d=> d.id) //relation the ID
+        .attr("text-anchor", "middle") //we center the text /мы центрируем текст
+        .attr("dy", -15) // смещаем текст вверх на 15 пикселей
+        .style("font-size", "12px")
+        .style("fill", "#ffffff") // Texto blanco para que contraste
+        .style("pointer-events", "none"); // Para que el ratón no interfiera
+
+
+
+//create phisic engine  
 // создает физический движок, который непрерывно перемещает круги (узлы) 
     simulation = d3.forceSimulation(data)
     //Притягивает узлы к горизонтальному центру
@@ -45,13 +61,16 @@ d3.json("Data/data.json").then(function(data) {
         .force("centerX", d3.forceX(width/2).strength(0.05)) //запустите физический движок
         .force("centerY",d3.forceY(height / 2).strength(0.05))
     //it prevents the circles from overlapping
-    .force("collide", d3.forceCollide(d => Math.max(8, d.amount / 5000) + 2))
+        .force("collide", d3.forceCollide(d => Math.max(8, d.amount / 5000) + 2))
     //Предотвращает перекрытие кругов
         .on("tick", function(){
             nodes
                 .attr("cx", d => d.x)
                 .attr("cy", d=> d.y);
 
+            nodeLabels
+                .attr("x", d => d.x)
+                .attr("y", d => d.y);
         })
     }
 
