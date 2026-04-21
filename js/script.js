@@ -20,3 +20,22 @@ function getNodeColor(riskLevel){
     if(riskLevel === "Low") return "#0be881";
     return "#808e9b";
 }
+
+let simulation, nodes;
+
+//Upload a JSON file with transaction data and draw circles on teh SVG,
+//one for each transaction, sized according to the amount and colored according to the level 
+//of risk
+//загружает файл JSON с данными транзакции и рисует круги и SVG ПО ОДНОМУ
+//ДЛЯ КАЖДОЙ ТРАНЗАКЦИИ, РАЗМЕРОМ В ЗАВИСИМОСТИ ОТ СУММЫ И ЦВЕТОМ В ЗАВИСИМОСТИ ОТ УРОВНЯ РИСКА
+
+d3.json("data.json").then(function(data) {
+    nodes = svg.selectAll("circle")  //select circle 
+        .data(data)                  //link the data
+        .enter()                    
+        .append("circle")
+        .attr("class", "node")     //class to style
+        .attr("r", d=> Math.max(8, d.amount /5000)) //radio:mayo
+        .attr("fill", d => getNodeColor(d.risk)); //color segun el nivel de riesgo
+})
+  
