@@ -45,6 +45,7 @@ d3.json("Data/data.json").then(function(data) {
         .force("centerX", d3.forceX(width/2).strength(0.05)) //запустите физический движок
         .force("centerY",d3.forceY(height / 2).strength(0.05))
     //it prevents the circles from overlapping
+    .force("collide", d3.forceCollide(d => Math.max(8, d.amount / 5000) + 2))
     //Предотвращает перекрытие кругов
         .on("tick", function(){
             nodes
