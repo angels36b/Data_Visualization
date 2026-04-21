@@ -37,5 +37,20 @@ d3.json("data.json").then(function(data) {
         .attr("class", "node")     //class to style
         .attr("r", d=> Math.max(8, d.amount /5000)) //radio:mayo
         .attr("fill", d => getNodeColor(d.risk)); //color segun el nivel de riesgo
-})
+//create phisic engine 
+// создает физический движок, который непрерывно перемещает круги (узлы) 
+    simulation = d3.forceSimulation(data)
+    //Притягивает узлы к горизонтальному центру
+    //attract the nodes towards the horizontal center
+        .force("centerX", d3.forceX(width/2).strength(0.05)) //запустите физический движок
+        .force("centerY",d3.forceY(height / 2).strength(0.05))
+        .on("tick", function(){
+            nodes
+                .attr("cx", d => d.x)
+                .attr("cy", d=> d.y);
+
+        })
+    }
+
+)
   
