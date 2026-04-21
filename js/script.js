@@ -2,13 +2,13 @@ const width = 800;
 const height = 500;
 
 // DOM selection and SVG injection
-const svg = d3.select("canvas-container")
+const svg = d3.select("#canvas-container")
     .append("svg")
     .attr("width", width)
     .attr("height", height);
 
 //create label for the clustering zones: Safe, Suspicious, Illicit
-const labelSafe = svg.append("text").attr("x",150).attr("y",50).attr("class","zone-label").text("Safe").attr("opacity",0).att("text-anchor", "middle");
+const labelSafe = svg.append("text").attr("x",150).attr("y",50).attr("class","zone-label").text("Safe").attr("opacity",0).attr("text-anchor", "middle");
 const labelSuspicious = svg.append("text").attr("x",400).attr("y",50).attr("class","zone-label").text("Suspicious").attr("opacity",0).attr("text-anchor","middle");
 const labelIllicit = svg.append("text").attr("x",650).attr("y",50).attr("y",50).attr("class", "zone-label").text("Illicit").attr("opacity",0).attr("text-anchor", "middle");
 
@@ -29,7 +29,7 @@ let simulation, nodes;
 //загружает файл JSON с данными транзакции и рисует круги и SVG ПО ОДНОМУ
 //ДЛЯ КАЖДОЙ ТРАНЗАКЦИИ, РАЗМЕРОМ В ЗАВИСИМОСТИ ОТ СУММЫ И ЦВЕТОМ В ЗАВИСИМОСТИ ОТ УРОВНЯ РИСКА
 
-d3.json("data.json").then(function(data) {
+d3.json("Data/data.json").then(function(data) {
     nodes = svg.selectAll("circle")  //select circle 
         .data(data)                  //link the data
         .enter()                    
@@ -44,6 +44,8 @@ d3.json("data.json").then(function(data) {
     //attract the nodes towards the horizontal center
         .force("centerX", d3.forceX(width/2).strength(0.05)) //запустите физический движок
         .force("centerY",d3.forceY(height / 2).strength(0.05))
+    //it prevents the circles from overlapping
+    //Предотвращает перекрытие кругов
         .on("tick", function(){
             nodes
                 .attr("cx", d => d.x)
@@ -52,5 +54,34 @@ d3.json("data.json").then(function(data) {
         })
     }
 
-)
+) 
+.catch(function(error) {
+    // Si el JSON falla, esto lo imprimirá en rojo gigante en la consola
+    console.error("❌ ERROR LEYENDO EL JSON:", error);
+    alert("Hubo un error al leer data.json. Revisa la consola.");
+});
+
+
+// 6. Interactive Functions
+window.groupByRisk = function() {
+
+    d3.selectAll(".zone-label").transition().duration(800).attr("opacity", 1);
+    
+    simulation.force("centerX", d3.forceX(function(d) {
+        if (d.risk === "High") return 650;   
+        if (d.risk === "Medium") return 400; 
+        if (d.risk === "Low") return 150;    
+    }).strength(0.1)); 
+    
+    simulation.alpha(1).restart(); 
+};
+
+window.mixAll = function() {
+    d3.selectAll(".zone-label").transition().duration(500).attr("opacity", 0);
+    simulation.force("centerX", d3.forceX(width / 2).strength(0.05));
+    simulation.alpha(1).restart();
+};
   
+
+
+/**/
