@@ -48,7 +48,7 @@ d3.json("Data/data.json").then(function(data) {
         .attr("text-anchor", "middle") //we center the text /мы центрируем текст
         .attr("dy", -15) // смещаем текст вверх на 15 пикселей
         .style("font-size", "12px")
-        .style("fill", "#ffffff") // Texto blanco para que contraste
+        .style("fill", "#000000") // Texto blanco para que contraste
         .style("pointer-events", "none"); // Para que el ratón no interfiera
 
 
