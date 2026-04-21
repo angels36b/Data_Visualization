@@ -1,0 +1,11 @@
+[
+  {"id": "Tx-001", "risk": "High", "amount": 50000},
+  {"id": "Tx-002", "risk": "Low", "amount": 150},
+  {"id": "Tx-003", "risk": "Medium", "amount": 4000},
+  {"id": "Tx-004", "risk": "High", "amount": 80000},
+  {"id": "Tx-005", "risk": "Low", "amount": 25},
+  {"id": "Tx-006", "risk": "Low", "amount": 100},
+  {"id": "Tx-007", "risk": "Medium", "amount": 3000},
+  {"id": "Tx-008", "risk": "High", "amount": 120000},
+  {"id": "Tx-009", "risk": "Low", "amount": 50}
+]
