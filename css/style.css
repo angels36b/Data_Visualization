@@ -1,5 +1,4 @@
-/*Reset basic margin*/
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -8,71 +7,253 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #1e272e;
-    color:#d2dae2;
+    color: #d2dae2;
     text-align: center;
 }
 
-/*---Top Dashboard Header ---*/
 .dashboard-header {
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
     background-color: #2f3640;
     padding: 15px 30px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
-.brand-logo{
-    height: 50px;
-    margin-right: 20px;
-    border-radius: 4px;
-}
 .dashboard-title {
     font-size: 24px;
-    font-weight: 600px;
+    font-weight: 600;
     color: #f5f6fa;
 }
 
-.controls{
-    margin-bottom:20px;
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    gap:20px;
 }
 
 button {
-    padding: 10px 20px;
-    margin: 0 10px;
+    padding: 12px 24px;
     cursor: pointer;
     border: none;
-    border-radius: 4 px;
+    border-radius: 6px;
     background-color: #0fb9b1;
-    color:white;
+    color: white;
+    font-size: 1rem;
     font-weight: bold;
-    transition:background-color 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Sombra sutil para dar profundidad */
 }
 
-button:hover{
+button:hover {
     background-color: #2bcbba;
+    transform: translateY(-2px); /* El botón se "levanta" un poquito */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
-#canvas-container {
-    background-color: #f5f6fa;
-    margin:0 auto;
-    border-radius: 8 px;
-    width: 800px;
-    height: 500px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 8px 15px rgbd(0,0,0,0.2);
+
+
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
 }
 
+/* El estilo de cada uno de los 4 cuadros */
+.card {
+    background-color: #2f3640;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: #f5f6fa;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+/* Para que los gráficos se adapten a las tarjetas */
+svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilos para la sección de la historia */
+.history-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #2f3640;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.history-section h2 {
+    color: #0fb9b1;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #0fb9b1;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.history-content p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #d2dae2;
+    font-size: 1.05rem;
+}
+
+
+
+/* Estilos SVG */
 .node {
-    stroke:#ffffff;
+    stroke: #ffffff;
     stroke-width: 1.5px;
 }
 
-.zone-label{
-    font-size:20px;
-    font-weight:bold;
-    fill:#485460;
-    font-family: sans-serif;
+.zone-label {
+    fill: #ffffff; /* Color blanco puro para que resalte al máximo */
+    font-size: 24px; /* Tamaño de letra más grande */
+    font-weight: 800; /* Letra extra gruesa (negrita) para mayor nitidez */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Misma fuente de tu diseño */
+    letter-spacing: 2px; /* Un pequeño espacio entre letras para que se lea mejor */
+    text-transform: uppercase; /* Ponerlas en mayúsculas da un toque más analítico/profesional */
+}
+
+.header-information{
+            background-color: #2c2c2c; /* Fondo gris oscuro para el header */
+            padding: 40px;
+            border-bottom: 2px solid #444;
+        }
+.contender-columnas{
+   display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;        /* centra el bloque horizontalmente */
+    padding: 20px;
+    text-align: left;
+}
+        .columna-imagen {
+            flex: 0 0 auto;
+            
+            text-align: left;
+        }
+
+        .columna-imagen img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: block;
+        }
+
+        /* Columna derecha: texto */
+        .columna-texto {
+            flex: 1;
+            min-width: 280px;
+            color: #ffffff; /* Letra blanca para visibilidad */
+            text-align: justify; 
+            line-height: 1.6;
+        }
+
+        /* Títulos resaltados */
+        .columna-texto h1 {
+            color: #ffd966; /* Amarillo suave para resaltar */
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffd966;
+            padding-left: 15px;
+        }
+
+        .columna-texto h2 {
+            color: #ffb347; /* Naranja claro */
+            font-size: 1.4rem;
+            margin: 20px 0 10px 0;
+        }
+
+        .columna-texto p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        /* Fecha destacada */
+        .fecha-destacada {
+            color: #ffd966;
+            font-weight: bold;
+            background-color: rgba(255, 217, 102, 0.15);
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
+        /* Responsive: en pantallas pequeñas, las columnas se apilan */
+        @media (max-width: 768px) {
+            .contender-columnas {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            header {
+                padding: 25px;
+            }
+        }
+
+        .explanation-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #2f3640;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.explanation-section h2 {
+    color: #0fb9b1;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #0fb9b1;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.explanation-section h3 {
+    color: #ffb347;
+    margin: 25px 0 15px 0;
+    font-size: 1.3rem;
+}
+
+.explanation-section p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #d2dae2;
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.explanation-section ul {
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.explanation-section li {
+    color: #d2dae2;
+    line-height: 1.5;
+    margin-bottom: 8px;
 }

@@ -2,23 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GNN Risk Clustering - Dashboard</title>
+    <title>AML Risk Dashboard</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <header class="dashboard-header">
-        <img src="logo.png" alt="Company Logo" class="brand-logo" onerror="this.style.display='none'">
-        <h1 class="dashboard-title">AML Transaction Clustering</h1>
+        <h1 class="dashboard-title">Классификация блокчейн-аккаунтов как незаконных или законных</h1>
     </header>
+
+
+<div class="contender-columnas">
+        
+        <!-- Columna izquierda: imagen -->
+        <div class="columna-imagen">
+           
+            <img src="Image/satoshi.jpg" alt="Mi imagen">
+           
+        </div>
+        
+        <div class="columna-texto">
+            <h1>🔗 Блокчейн: Революция доверия</h1>
+            
+            <h2>📌 Происхождение: Блок Генезис и распределённое доверие</h2>
+            
+            <p>История современной технологии блокчейн родилась как прямой ответ на мировой финансовый кризис 2008 года. 
+            <span class="fecha-destacada">31 октября 2008 года</span> под псевдонимом <strong>Сатоши Накамото</strong> была опубликована 
+            белая книга под названием <em>"Bitcoin: A Peer-to-Peer Electronic Cash System"</em>.</p>
+            
+            <p>Цель была революционной: создать децентрализованную финансовую систему, которая зависит не от доверия к посредникам 
+            (например, банкам), а от криптографии.</p>
+            
+            <p><span class="fecha-destacada">3 января 2009 года</span> был добыт <strong>"Блок Генезис"</strong>, давший жизнь 
+            неизменяемому публичному реестру (ledger), где каждая транзакция навсегда остаётся отслеживаемой.</p>
+            
+            <p>💡 <strong>Ключевая идея:</strong> Распределённое доверие вместо централизованных посредников.</p>
+        </div>
+        
+    </div>
+
+<section class="explanation-section">
+    <h2>📊 Объяснение графиков информационной панели</h2>
+
+    <div class="explanation-content">
+        <p>На этой панели представлены результаты анализа <strong>50 аккаунтов блокчейна</strong>, классифицированных как законные, незаконные или неизвестные. Нормативный критерий для идентификации незаконных аккаунтов: <strong>Рекомендации FATF (особенно «Travel Rule»)</strong>.</p>
+
+        <h3>🔘 1. Кластер транзакций (граф узлов)</h3>
+        <p>Группирует аккаунты по их характеристике (законный, незаконный, неизвестный). Цвета: зелёный – законные, красный – незаконные, серый – неизвестные. Связи показывают транзакционные отношения. Кнопки «Group by Risk Level» и «Mix All Transactions» меняют группировку.</p>
+
+        <h3>📊 2. Столбчатая диаграмма (Объём по риску)</h3>
+        <p>Показывает количество аккаунтов в каждой категории:</p>
+        <ul>
+            <li><span style="color:#2ecc71;">Законные</span> – <strong>18 аккаунтов</strong> (36% от общего числа)</li>
+            <li><span style="color:#e74c3c;">Незаконные</span> – <strong>15 аккаунтов</strong> (30%)</li>
+            <li><span style="color:#95a5a6;">Неизвестные</span> – <strong>17 аккаунтов</strong> (34%)</li>
+        </ul>
+
+        <h3>🥧 3. Круговая диаграмма (Карта расположения аккаунтов)</h3>
+        <p>Отображает процентное соотношение категорий: законные 36%, незаконные 30%, неизвестные 34%.</p>
+
+        <h3>🌍 4. Глобальная карта рисков</h3>
+        <p>Географическое расположение аккаунтов по всему миру. Цвет точек соответствует риску (красный – незаконный, зелёный – законный, серый – неизвестный).</p>
+    </div>
+</section>
     
     <div class="controls">
         <button onclick="groupByRisk()">Group by Risk Level</button>
         <button onclick="mixAll()">Mix All Transactions</button>
     </div>
     
-    <div id="canvas-container"></div>
+    
+
+    <div class="dashboard-grid">
+        <div id="canvas-container" class="card">
+            <d3>Кластер транзакций</d3>
+        </div>
+        <div id="map-container" class="card">
+            <d3>Глобальная карта рисков</d3>
+        </div>
+        
+        <div id="bar-chart-container" class="card">
+            <h3>Объем на риск</h3>
+        </div>
+
+        <div id="pie-chart-container" class="card">
+            <h3>карта расположения аккаунтов</h3>
+        </div>
+        
+    </div>
+   
 
     <script src="js/script.js"></script>
 </body>
